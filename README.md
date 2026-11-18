@@ -41,4 +41,4 @@ first.increment() 3회 호출
 
 ## 설명
 
-인스턴스는 `Singleton` 클래스의 `private static Singleton instance` 필드에 보관됩니다. static 필드는 객체마다 따로 생기지 않고 클래스에 하나만 있기 때문에, 프로그램 어디서 접근해도 같은 변수를 보게 됩니다. `getInstance()`는 `instance`가 `null`일 때 한 번만 객체를 만들고, 그 뒤로는 저장해 둔 객체를 그대로 반환합니다. 생성자가 `private`이라 외부에서 `new Singleton()`으로 새 객체를 만들 수도 없습니다. 실행 결과를 보면 "인스턴스 생성됨" 메시지가 한 번만 찍히고, 참조 비교 `first == second`가 `true`로 나오며, `first`로 증가시킨 카운터 값을 `second`에서 그대로 읽을 수 있습니다. 이 세 가지를 근거로 두 변수가 같은 인스턴스 하나를 공유한다는 것을 확인할 수 있습니다.
+Singleton 객체는 클래스 안의 `private static` 변수인 `instance`에 저장해 두었다. static 변수라서 몇 번을 요청하든 클래스에 딱 하나만 있다. `getInstance()`를 처음 호출할 때만 `instance`가 비어 있어서 객체가 만들어지고, 그다음부터는 이미 저장된 객체를 그대로 돌려주기 때문에 새로 생기지 않는다. 생성자도 private으로 막아 놔서 밖에서 `new`로 만들려고 하면 컴파일이 안 된다. 실제로 실행해 보니 생성 메시지가 한 번만 나오고 `first == second`가 true였고, first로 카운터를 3 올린 뒤 second로 읽어도 3이 나와서 둘이 같은 객체라는 걸 확인할 수 있었다.
